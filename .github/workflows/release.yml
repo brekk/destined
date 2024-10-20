@@ -1,7 +1,18 @@
+name: Release and Publish
+
 on:
   push:
     branches: main
+  pull_request:
+    branches: main
   workflow_dispatch:
+
+concurrency: # Run release builds sequentially, cancel outdated PR builds
+  group: ci-${{ github.ref }}
+  cancel-in-progress: ${{ github.ref != 'refs/heads/main' }}
+
+permissions: # Grant write access to github.token within non-pull_request builds
+  contents: write
 
 jobs:
   publish:
@@ -14,3 +25,11 @@ jobs:
       - uses: JS-DevTools/npm-publish@v3
         with:
           token: ${{ secrets.NPM_TOKEN }}
+      - id: release
+        name: Prepare release
+        uses: mgoltzsche/conventional-release@v0
+      - name: Publish artifact
+        if: steps.release.outputs.publish
+        run: |
+          set -u
+          echo Publishing $RELEASE_VERSION
