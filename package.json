@@ -1,6 +1,6 @@
 {
   "name": "destined",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "fs, but in the future 🔮",
   "main": "destined.js",
   "type": "module",
