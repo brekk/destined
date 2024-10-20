@@ -106,6 +106,7 @@ test(`readDir - fail`, () =>
 test(`readFile`, () =>
   new Promise((done) => {
     fork(done)((z) => {
+      delete z.version
       expect(z).toMatchSnapshot()
       done()
     })(readFile(path.resolve(cwd(), `package.json`)))

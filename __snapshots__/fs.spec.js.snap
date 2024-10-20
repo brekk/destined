@@ -3,7 +3,7 @@
 exports[`readFile 1`] = `
 "{
   "name": "destined",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "description": "fs, but in the future 🔮",
   "main": "destined.js",
   "type": "module",
@@ -25,6 +25,7 @@ exports[`readFile 1`] = `
     "eslint-plugin-jsdoc": "50.4.3",
     "eslint-plugin-prettier": "5.2.1",
     "globals": "15.11.0",
+    "madge": "8.0.0",
     "nps": "5.10.0",
     "prettier": "3.3.3",
     "unusual": "0.0.3",
@@ -34,13 +35,12 @@ exports[`readFile 1`] = `
     "nps": "dotenv -- nps -c ./package-scripts.cjs",
     "clean": "dotenv -- nps -c ./package-scripts.cjs clean",
     "lint": "dotenv -- nps -c ./package-scripts.cjs lint",
-    "meta": "dotenv -- nps -c ./package-scripts.cjs meta",
     "meta:graph": "dotenv -- nps -c ./package-scripts.cjs meta.graph",
     "test": "dotenv -- nps -c ./package-scripts.cjs test",
     "test:ci": "dotenv -- nps -c ./package-scripts.cjs test.ci",
-    "test:silent": "dotenv -- nps -c ./package-scripts.cjs test.silent",
     "test:snapshot": "dotenv -- nps -c ./package-scripts.cjs test.snapshot",
-    "test:watch": "dotenv -- nps -c ./package-scripts.cjs test.watch"
+    "test:watch": "dotenv -- nps -c ./package-scripts.cjs test.watch",
+    "care": "dotenv -- nps -c ./package-scripts.cjs care"
   },
   "packageManager": "yarn@4.5.1"
 }

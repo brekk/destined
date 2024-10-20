@@ -1,9 +1,7 @@
-const PKG = require(`./package.json`)
 const sd = (script, description = ``) =>
   description ? { script, description } : { script }
 
 const INPUT = `./destined.js`
-const OUTPUT = `dist/` + PKG.main
 module.exports = {
   scripts: {
     clean: sd(`rm -r dist`, `clean the build!`),
@@ -17,5 +15,10 @@ module.exports = {
     meta: {
       graph: `madge ${INPUT} --image graph.svg`,
     },
+    care: [
+      "nps -c ./package-scripts.cjs lint",
+      "nps -c ./package-scripts.cjs test",
+      "nps -c ./package-scripts.cjs meta.graph",
+    ].join(" && "),
   },
 }

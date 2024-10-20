@@ -52,7 +52,6 @@ export default [
       "generator-star-spacing": [2, "after"],
       indent: [2, 2],
       "jsx-quotes": [1, "prefer-double"],
-      quotes: [2, "backtick"],
       "max-len": [1, 100, 2],
       "new-cap": [2, { capIsNew: false }],
       "no-trailing-spaces": [2, { skipBlankLines: true }],
