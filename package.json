@@ -10,11 +10,11 @@
   "exports": {
     ".": "./destined.js",
     "./dig-up": "./dig-up.js",
-    "./dig-up.js": "./dig-up.js"
+    "./dig-up.js": "./dig-up.js",
     "./fs": "./fs.js",
-    "./fs.js": "./fs.js"
+    "./fs.js": "./fs.js",
     "./interpret": "./interpret.js",
-    "./interpret.js": "./interpret.js"
+    "./interpret.js": "./interpret.js",
     "./path": "./path.js",
     "./path.js": "./path.js"
   },
