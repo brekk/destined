@@ -25,7 +25,8 @@ jobs:
         run: yarn --immutable
       - name: 🔍 Checking version...
         run: |
-          echo "VERSION_BEFORE=$(node -e \"console.log(require('package.json').version)\")" >> "$GITHUB_ENV"
+          VERSION_BEFORE="v$(cat madlib.json | grep version | cut -d":" -f2 | cut -d"\"" -f2)"
+          echo "VERSION_BEFORE=$VERSION_BEFORE">> "$GITHUB_ENV"
       - name: 🧪 Running tests...
         id: test
         run: |
