@@ -1,3 +1,10 @@
+## [0.1.3](https://github.com/brekk/destined/compare/v0.1.2...v0.1.3) (2024-10-20)
+
+
+### Bug Fixes
+
+* maybe actually fixed this dman release action ([33f2fb8](https://github.com/brekk/destined/commit/33f2fb8c26970c8c2a354659b2aa1a4e2a11c60f))
+
 ## [0.1.2](https://github.com/brekk/destined/compare/v0.1.1...v0.1.2) (2024-10-20)
 
 
