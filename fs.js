@@ -2,7 +2,6 @@ import fs from "node:fs"
 import { sep } from "node:path"
 import { reduce, F, propOr, without, curry, pipe, map, __ as $ } from "ramda"
 import {
-  encaseP,
   Future,
   chain,
   chainRej,
@@ -31,7 +30,7 @@ export const NO_OP = () => {}
  * @name localize
  * @example
  * ```js
- * import { localize } from 'file-system'
+ * import { localize } from 'destined'
  * console.log(`support ${localize('business')}`)
  * // support ./business
  * ```
@@ -46,7 +45,7 @@ export const localize = (z) => `.${sep}${z}`
  *     @example
  *     ```js
  *     import { fork } from 'fluture'
- *     import { readFile } from 'file-system'
+ *     import { readFile } from 'destined'
  *     fork(console.warn)(console.log)(
  *       readFileWithFormatAndCancel(() => process.exit(), 'utf8', './README.md')
  *     )
@@ -56,7 +55,7 @@ export const localize = (z) => `.${sep}${z}`
  *     @example
  *     ```js
  *     import { fork } from 'fluture'
- *     import { readFile } from 'file-system'
+ *     import { readFile } from 'destined'
  *     fork(console.warn)(console.log)(
  *       readFileWithCancel(() => process.exit(), './README.md')
  *     )
@@ -66,7 +65,7 @@ export const localize = (z) => `.${sep}${z}`
  *     @example
  *     ```js
  *     import { fork } from 'fluture'
- *     import { readFile } from 'file-system'
+ *     import { readFile } from 'destined'
  *     fork(console.warn)(console.log)(readFile('./README.md'))
  *     ```
  */
@@ -78,7 +77,7 @@ export const readFileWithFormatAndCancel = curry(
     })
   },
 )
-export const readFileWithCancel = readFileWithFormatAndCancel($, "utf8")
+export const readFileWithCancel = readFileWithFormatAndCancel($, `utf8`)
 export const readFile = readFileWithCancel(NO_OP)
 
 /**
@@ -89,7 +88,7 @@ export const readFile = readFileWithCancel(NO_OP)
  * @example
  * ```js
  * import { fork } from 'fluture'
- * import { readJSONFile } from 'file-system'
+ * import { readJSONFile } from 'destined'
  * fork(console.warn)(console.log)(readJSONFile('./package.json'))
  * ```
  */
@@ -107,7 +106,7 @@ export const readJSONFileWithCancel = curry(
  * @example
  * ```js
  * import { fork } from 'fluture'
- * import { readJSONFile } from 'file-system'
+ * import { readJSONFile } from 'destined'
  * fork(console.warn)(console.log)(readJSONFile('./package.json'))
  * ```
  */
@@ -123,7 +122,7 @@ export const readJSONFile = readJSONFileWithCancel(NO_OP)
  * @example
  * ```js
  * import { fork } from 'fluture'
- * import { readDirWithConfigAndCancel } from 'file-system'
+ * import { readDirWithConfigAndCancel } from 'destined'
  * // [...]
  * pipe(
  *   fork(console.warn)(console.log)
@@ -152,7 +151,7 @@ export const readDirWithConfigAndCancel = curry(
  * @example
  * ```js
  * import { fork } from 'fluture'
- * import { readDirWithConfig } from 'file-system'
+ * import { readDirWithConfig } from 'destined'
  * // [...]
  * pipe(
  *   fork(console.warn)(console.log)
@@ -170,7 +169,7 @@ export const readDirWithConfig = readDirWithConfigAndCancel(NO_OP)
  * @example
  * ```js
  * import { fork } from 'fluture'
- * import { readDir } from 'file-system'
+ * import { readDir } from 'destined'
  * // [...]
  * fork(console.warn)(console.log)(readDir('src/*'))
  * ```
@@ -186,7 +185,7 @@ export const readDir = readDirWithConfig({})
  * @example
  * ```js
  * import { fork } from 'fluture'
- * import { writeFileWithConfig } from 'file-system'
+ * import { writeFileWithConfig } from 'destined'
  * // [...]
  * fork(console.warn)(console.log)(
  *   writeFileWithConfigAndCancel(
@@ -222,7 +221,7 @@ export const writeFileWithConfigAndCancel = curry(
  * @example
  * ```js
  * import { fork } from 'fluture'
- * import { writeFileWithConfig } from 'file-system'
+ * import { writeFileWithConfig } from 'destined'
  * // [...]
  * fork(console.warn)(console.log)(
  *   writeFileWithConfig(
@@ -244,7 +243,7 @@ export const writeFileWithConfig = writeFileWithConfigAndCancel(NO_OP)
  * @example
  * ```js
  * import { fork } from 'fluture'
- * import { writeFileWithConfig } from 'file-system'
+ * import { writeFileWithConfig } from 'destined'
  * // [...]
  * fork(console.warn)(console.log)(
  *   writeFileWithConfig(
@@ -254,7 +253,7 @@ export const writeFileWithConfig = writeFileWithConfigAndCancel(NO_OP)
  * )
  * ```
  */
-export const writeFile = writeFileWithConfig({ encoding: "utf8" })
+export const writeFile = writeFileWithConfig({ encoding: `utf8` })
 
 /**
  * Remove a file, configurably, with cancellation.
@@ -265,7 +264,7 @@ export const writeFile = writeFileWithConfig({ encoding: "utf8" })
  *     @example
  *      ```js
  *      import { fork } from 'fluture'
- *      import { removeFileWithConfigAndCancel } from 'file-system'
+ *      import { removeFileWithConfigAndCancel } from 'destined'
  *
  *      fork(console.warn)(console.log)(
  *        removeFileWithConfigAndCancel(
@@ -280,7 +279,7 @@ export const writeFile = writeFileWithConfig({ encoding: "utf8" })
  *     @example
  *     ```js
  *     import { fork } from 'fluture'
- *     import { removeFileWithConfig } from 'file-system'
+ *     import { removeFileWithConfig } from 'destined'
  *     // [...]
  *     fork(console.warn)(console.log)(
  *       removeFileWithConfig(
@@ -295,7 +294,7 @@ export const writeFile = writeFileWithConfig({ encoding: "utf8" })
  *     @example
  *     ```js
  *     import { fork } from 'fluture'
- *     import { removeFile } from 'file-system'
+ *     import { removeFile } from 'destined'
  *     // [...]
  *     fork(console.warn)(console.log)(
  *       removeFile(
@@ -334,7 +333,7 @@ export const DEFAULT_REMOVAL_CONFIG = {
  * @example
  * ```js
  * import { fork } from 'fluture'
- * import { removeFilesWithConfig } from 'file-system'
+ * import { removeFilesWithConfig } from 'destined'
  * // [...]
  * fork(console.warn)(console.log)(
  *   removeFilesWithConfigAndCancel(
@@ -348,8 +347,8 @@ export const DEFAULT_REMOVAL_CONFIG = {
 export const removeFilesWithConfigAndCancel = curry(
   function _removeFilesWithConfigAndCancel(cancel, conf, list) {
     return pipe(
-      map(removeFileWithConfigAndCancel(cancel, without(["parallel"], conf))),
-      parallel(propOr(10, "parallel", conf)),
+      map(removeFileWithConfigAndCancel(cancel, without([`parallel`], conf))),
+      parallel(propOr(10, `parallel`, conf)),
     )(list)
   },
 )
@@ -362,7 +361,7 @@ export const removeFilesWithConfigAndCancel = curry(
  * @example
  * ```js
  * import { fork } from 'fluture'
- * import { DEFAULT_REMOVAL_CONFIG, removeFilesWithConfig } from 'file-system'
+ * import { DEFAULT_REMOVAL_CONFIG, removeFilesWithConfig } from 'destined'
  * // [...]
  * fork(console.warn)(console.log)(
  *   removeFilesWithConfig(
@@ -382,7 +381,7 @@ export const removeFilesWithConfig = removeFilesWithConfigAndCancel(NO_OP)
  * @example
  * ```js
  * import { fork } from 'fluture'
- * import { removeFilesWithConfig } from 'file-system'
+ * import { removeFilesWithConfig } from 'destined'
  * // [...]
  * fork(console.warn)(console.log)(
  *   removeFilesWithConfig(
@@ -402,7 +401,7 @@ export const removeFiles = removeFilesWithConfig(DEFAULT_REMOVAL_CONFIG)
  * @example
  * ```js
  * import { fork } from 'fluture'
- * import { mkdirWithCancel } from 'file-system'
+ * import { mkdirWithCancel } from 'destined'
  * // [...]
  * fork(console.warn)(console.log)(
  *   mkdirWithCancel(
@@ -431,7 +430,7 @@ export const mkdirWithCancel = curry(
  * @example
  * ```js
  * import { fork } from 'fluture'
- * import { mkdir } from 'file-system'
+ * import { mkdir } from 'destined'
  * // [...]
  * fork(console.warn)(console.log)(
  *   mkdir(
@@ -452,7 +451,7 @@ export const mkdir = mkdirWithCancel(NO_OP)
  * @example
  * ```js
  * import { fork } from 'fluture'
- * import { mkdir } from 'file-system'
+ * import { mkdir } from 'destined'
  * // [...]
  * fork(console.warn)(console.log)(
  *   mkdir(
@@ -475,7 +474,7 @@ export const exists = access(constants.F_OK)
 export const readable = access(constants.R_OK)
 
 export const directoryOnly = (filePath) =>
-  filePath.slice(0, filePath.lastIndexOf("/"))
+  filePath.slice(0, filePath.lastIndexOf(`/`))
 
 /**
  * Write a file to a nested folder and automatically create needed folders, akin to `mkdir -p`
@@ -483,7 +482,7 @@ export const directoryOnly = (filePath) =>
  * @example
  * ```js
  * import { fork } from 'fluture'
- * import { writeFileWithAutoPath } from 'file-system'
+ * import { writeFileWithAutoPath } from 'destined'
  * // [...]
  * fork(console.warn)(console.log)(
  *   writeFileWithAutoPath(

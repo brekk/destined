@@ -1,14 +1,14 @@
-import { Future } from 'fluture'
-import { curry, pipe } from 'ramda'
+import { Future } from "fluture"
+import { curry, pipe } from "ramda"
 function noOp() {}
 
-const handleDefault = rawPlug => {
+const handleDefault = (rawPlug) => {
   // TODO: this must be an upstream bug
   const out = rawPlug?.default?.default
     ? rawPlug.default.default
     : rawPlug?.default
-    ? rawPlug.default
-    : rawPlug
+      ? rawPlug.default
+      : rawPlug
   return out
 }
 
@@ -18,7 +18,7 @@ export const interpretWithCancel = curry(
       import(filepath).catch(bad).then(pipe(handleDefault, good))
       return cancel
     })
-  }
+  },
 )
 export const interpret = interpretWithCancel(noOp)
 export const importF = interpret
@@ -33,7 +33,7 @@ export const demandWithCancel = curry(
       }
       return cancel
     })
-  }
+  },
 )
 
 export const demand = demandWithCancel(noOp)

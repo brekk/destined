@@ -4,4 +4,4 @@
 
 Futures are great alternatives to Promises as lazy, composable and well-modeled asynchrony.
 
-`file-system` contains some common utility wrappers for `fs`.
+`destined` contains some common utility wrappers for `fs`.

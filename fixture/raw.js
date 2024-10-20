@@ -1,5 +1,5 @@
 const raw = {
-  input: 'this is a fixture',
+  input: `this is a fixture`,
 }
 
 export default raw

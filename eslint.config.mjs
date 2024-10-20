@@ -6,13 +6,7 @@ import pluginJs from "@eslint/js"
 
 export default [
   {
-    ignores: [
-      "blem.mjs",
-      "blem.umd.js",
-      "blem.js",
-      "!src/blem.js",
-      "*.config.mjs",
-    ],
+    ignores: ["*.config.mjs", ".pnp*"],
   },
   {
     languageOptions: {

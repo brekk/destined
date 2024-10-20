@@ -1,9 +1,8 @@
 import path from "node:path"
-import { afterAll, test, expect } from "vitest"
 import { cwd } from "node:process"
 import { fork } from "fluture"
-import { curry, split, of, ap, init, last, pipe } from "ramda"
 import U from "unusual"
+import { afterAll, test, expect } from "vitest"
 import {
   localize,
   DEFAULT_REMOVAL_CONFIG,
@@ -15,15 +14,14 @@ import {
   writeFile,
   writeFileWithAutoPath,
 } from "./fs"
-import { localsOnly } from "./test-helpers"
 import PKG from "./package.json"
 
-const u = U(PKG.name + "@" + PKG.version)
-test("localize", () => {
-  expect(localize("rawr")).toEqual("./rawr")
+const u = U(PKG.name + `@` + PKG.version)
+test(`localize`, () => {
+  expect(localize(`rawr`)).toEqual(`./rawr`)
 })
 
-test("writeFile", () =>
+test(`writeFile`, () =>
   new Promise((done) => {
     const input = `` + u.integer({ min: 0, max: 1e6 })
     fork(done)((z) => {
@@ -31,135 +29,135 @@ test("writeFile", () =>
       done()
     })(
       writeFile(
-        path.resolve(cwd(), "fixture/apps/admin-pretend/fakefile.biz"),
+        path.resolve(cwd(), `fixture/apps/admin-pretend/fakefile.biz`),
         input,
       ),
     )
   }))
 
-test("writeFile - fail", () =>
+test(`writeFile - fail`, () =>
   new Promise((done) => {
     fork((z) => {
       expect(z).toBeTruthy()
-      expect(z.toString().includes("ENOENT")).toBeTruthy()
+      expect(z.toString().includes(`ENOENT`)).toBeTruthy()
       done()
     })(done)(
       writeFile(
-        path.resolve(cwd(), "invalid-path/apps/admin-pretend/fakefile.biz"),
-        "fixture",
+        path.resolve(cwd(), `invalid-path/apps/admin-pretend/fakefile.biz`),
+        `fixture`,
       ),
     )
   }))
 
-test("writeFile - fail differently", () =>
+test(`writeFile - fail differently`, () =>
   new Promise((done) => {
     fork((z) => {
       expect(z).toBeTruthy()
-      expect(z.toString().includes("EBADF")).toBeTruthy()
+      expect(z.toString().includes(`EBADF`)).toBeTruthy()
       done()
-    })(done)(writeFile(100, "fixture"))
+    })(done)(writeFile(100, `fixture`))
   }))
 
-test("readDirWithConfig", () =>
+test(`readDirWithConfig`, () =>
   new Promise((done) => {
     fork(done)((x) => {
       expect(x.sort()).toEqual([
-        "fixture/apps",
-        "fixture/apps/admin-pretend",
-        "fixture/apps/admin-pretend/fakefile.biz",
-        "fixture/apps/docs-pretend",
-        "fixture/apps/docs-pretend/fakefile.biz",
-        "fixture/packages",
-        "fixture/packages/eslint-pretend",
-        "fixture/packages/eslint-pretend/fakefile.biz",
-        "fixture/packages/ui-pretend",
-        "fixture/packages/ui-pretend/fakefile.biz",
-        "fixture/raw.js",
-        "fixture/scripts",
-        "fixture/scripts/cool-script",
-        "fixture/scripts/cool-script/fakefile.biz",
-        "fixture/scripts/copy-to-pretend",
-        "fixture/scripts/copy-to-pretend/fakefile.biz",
+        `fixture/apps`,
+        `fixture/apps/admin-pretend`,
+        `fixture/apps/admin-pretend/fakefile.biz`,
+        `fixture/apps/docs-pretend`,
+        `fixture/apps/docs-pretend/fakefile.biz`,
+        `fixture/packages`,
+        `fixture/packages/eslint-pretend`,
+        `fixture/packages/eslint-pretend/fakefile.biz`,
+        `fixture/packages/ui-pretend`,
+        `fixture/packages/ui-pretend/fakefile.biz`,
+        `fixture/raw.js`,
+        `fixture/scripts`,
+        `fixture/scripts/cool-script`,
+        `fixture/scripts/cool-script/fakefile.biz`,
+        `fixture/scripts/copy-to-pretend`,
+        `fixture/scripts/copy-to-pretend/fakefile.biz`,
       ])
       done()
-    })(readDirWithConfig({}, "fixture/**/*"))
+    })(readDirWithConfig({}, `fixture/**/*`))
   }))
 
-test("readDirWithConfig src/*/", () =>
+test(`readDirWithConfig src/*/`, () =>
   new Promise((done) => {
     fork(done)((x) => {
       expect(x.sort()).toEqual([
-        "fixture/apps",
-        "fixture/packages",
-        "fixture/scripts",
+        `fixture/apps`,
+        `fixture/packages`,
+        `fixture/scripts`,
       ])
       done()
-    })(readDirWithConfig({}, "fixture/*/"))
+    })(readDirWithConfig({}, `fixture/*/`))
   }))
 
-test("readDir - fail", () =>
+test(`readDir - fail`, () =>
   new Promise((done) => {
     fork((x) => {
       expect(x.message).toEqual(`callback provided to sync glob`)
       done()
-    })(done)(readDirWithConfig({ sync: true }, "@@#()@#()@"))
+    })(done)(readDirWithConfig({ sync: true }, `@@#()@#()@`))
   }))
 
-test("readFile", () =>
+test(`readFile`, () =>
   new Promise((done) => {
     fork(done)((z) => {
       expect(z).toMatchSnapshot()
       done()
-    })(readFile(path.resolve(cwd(), "package.json")))
+    })(readFile(path.resolve(cwd(), `package.json`)))
   }))
 
-test("readFile - fail", () =>
+test(`readFile - fail`, () =>
   new Promise((done) => {
     fork((z) => {
-      expect(z.toString().split(",")[0]).toEqual(
-        "Error: ENOENT: no such file or directory",
+      expect(z.toString().split(`,`)[0]).toEqual(
+        `Error: ENOENT: no such file or directory`,
       )
       done()
-    })(done)(readFile(path.resolve(cwd(), "coolfilenice.biz")))
+    })(done)(readFile(path.resolve(cwd(), `coolfilenice.biz`)))
   }))
 
 test(
-  "mkdirp",
+  `mkdirp`,
   new Promise((done) => {
     fork(done)((raw) => {
       expect(raw).toBeTruthy()
       done()
-    })(mkdirp("my-dir"))
+    })(mkdirp(`my-dir`))
   }),
 )
 
-test("writeFileWithAutoPath", () =>
+test(`writeFileWithAutoPath`, () =>
   new Promise((done) => {
-    const FILE_PATH = "./my-dir/is/a/big/long/list/of/directories/file.biz"
+    const FILE_PATH = `./my-dir/is/a/big/long/list/of/directories/file.biz`
     fork(done)((raw) => {
       expect(raw).toBeTruthy()
       fork(done)(() => done())(
         removeFilesWithConfig(DEFAULT_REMOVAL_CONFIG, [FILE_PATH]),
       )
-    })(writeFileWithAutoPath(FILE_PATH, "cool cool content"))
+    })(writeFileWithAutoPath(FILE_PATH, `cool cool content`))
   }))
 
-test("readFile", () =>
+test(`readFile`, () =>
   new Promise((done) => {
     fork(done)((x) => {
       expect(x).toEqual(`const raw = {
-  input: 'this is a fixture',
+  input: \`this is a fixture\`,
 }
 
 export default raw
 `)
       done()
-    })(readFile(__dirname + "/fixture/raw.js"))
+    })(readFile(__dirname + `/fixture/raw.js`))
   }))
 
 afterAll(
   () =>
     new Promise((done) => {
-      fork(done)(() => done())(rimraf("my-dir"))
+      fork(done)(() => done())(rimraf(`my-dir`))
     }),
 )
