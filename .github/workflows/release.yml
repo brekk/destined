@@ -45,7 +45,7 @@ jobs:
       - name: 🪚 Checking version...
         run: |
           echo "CURRENT"
-          echo ${{ steps.changelog.outputs.version }}
+          echo "${{ steps.changelog.outputs.version }}"
           echo "PREVIOUS"
           echo $VERSION_BEFORE
 
