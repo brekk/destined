@@ -1,3 +1,10 @@
+## [0.1.2](https://github.com/brekk/destined/compare/v0.1.1...v0.1.2) (2024-10-20)
+
+
+### Bug Fixes
+
+* try again ([96bcbb3](https://github.com/brekk/destined/commit/96bcbb30df04896026feed3b418230323a8e974d))
+
 ## [0.1.1](https://github.com/brekk/destined/compare/v0.1.0...v0.1.1) (2024-10-20)
 
 
@@ -39,4 +46,16 @@
 ### Bug Fixes
 
 * update wiring and add a basic integration test ([b8b819f](https://github.com/brekk/destined/commit/b8b819f59a0145821e3f7195c02e48010cd9bb79))
+
+## [0.0.2](https://github.com/brekk/destined/compare/v0.0.1...v0.0.2) (2024-10-20)
+
+
+### Features
+
+* general robustification ([50024ec](https://github.com/brekk/destined/commit/50024ec9fd6871b18601c8933df2f08be3094317))
+
+
+### Bug Fixes
+
+* core artifacts incorrect ([89d27f5](https://github.com/brekk/destined/commit/89d27f506cdab0dea12e7758bfb0a8b580ffc5ff))
 
