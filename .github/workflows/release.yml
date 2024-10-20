@@ -36,13 +36,14 @@ jobs:
         run: |
           yarn lint
       - name: 🪵 Capturing changelog...
+        id: changelog
         uses: TriPSs/conventional-changelog-action@v5
         with:
           preset: "conventionalcommits"
           release-count: 0
           github-token: ${{ secrets.github_token }}
-          # skip-commit: true
-          # skip-tag: true
+          skip-commit: true
+          skip-tag: true
       - name: 🪚 Checking version...
         run: |
           echo "..."
