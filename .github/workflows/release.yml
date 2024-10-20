@@ -48,14 +48,17 @@ jobs:
           echo "${{ steps.changelog.outputs.version }}"
           echo "***"
           echo ${{ steps.changelog.outputs.version }}
+          echo "<<<"
+          echo $YOYO
           echo "CURRENT"
-          echo $VERSION_CURRENT
+          echo "VERSION CURRENT: $VERSION_CURRENT"
           echo "PREVIOUS"
           echo $VERSION_PRIOR
           echo "COMPARE"
           echo $VERSION_CURRENT == $VERSION_PRIOR
         env:
           VERSION_CURRENT: ${{steps.changelog.outputs.version}}
+          YOYO: ${{ toJson(steps.changelog.outputs.version) }}
 
       # - name: 🐣 Creating release...
       #   uses: actions/create-release@v1
