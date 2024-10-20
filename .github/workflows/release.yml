@@ -47,13 +47,17 @@ jobs:
       - name: 🪚 Checking version...
         run: |
           echo "..."
+          echo $DO_IT
+          echo ">>>"
           echo $YOYO
           echo "COMPARE"
-          comp=[ $VERSION_CURRENT == $VERSION_PRIOR ]
+          VERSION_UPDATED
+          comp=$(($VERSION_CURRENT == $VERSION_PRIOR ? "true" : "false"))
           echo $comp
         env:
           VERSION_CURRENT: ${{steps.changelog.outputs.version}}
           YOYO: ${{ toJson(steps) }}
+          DO_IT: ${{ toJson(steps.changelog.outputs.skipped) }}
 
       # - name: 🐣 Creating release...
       #   uses: actions/create-release@v1
