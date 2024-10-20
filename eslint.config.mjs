@@ -30,15 +30,6 @@ export default [
       "import/named": 2,
       "import/no-mutable-exports": 2,
       "import/order": 2,
-      "import/extensions": [
-        2,
-        {
-          json: "always",
-          js: "never",
-          validation: "always",
-          task: "always",
-        },
-      ],
     },
   },
   {

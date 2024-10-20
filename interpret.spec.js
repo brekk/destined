@@ -1,6 +1,6 @@
 import { fork } from "fluture"
 import { test, expect } from "vitest"
-import { interpret } from "./interpret"
+import { interpret } from "./interpret.js"
 
 test(`interpret`, () =>
   new Promise((done) => {

@@ -3,14 +3,24 @@
 exports[`readFile 1`] = `
 "{
   "name": "destined",
-  "version": "0.0.3",
+  "version": "0.0.6",
   "description": "fs, but in the future 🔮",
   "main": "destined.js",
   "type": "module",
-  "repository": "brekk/monoculture",
+  "repository": "brekk/destined",
   "author": "brekk",
   "license": "MIT",
-  "exports": "./destined.js",
+  "exports": {
+    ".": "./destined.js",
+    "./dig-up": "./dig-up.js",
+    "./dig-up.js": "./dig-up.js",
+    "./fs": "./fs.js",
+    "./fs.js": "./fs.js",
+    "./interpret": "./interpret.js",
+    "./interpret.js": "./interpret.js",
+    "./path": "./path.js",
+    "./path.js": "./path.js"
+  },
   "dependencies": {
     "find-up": "7.0.0",
     "fluture": "14.0.0",

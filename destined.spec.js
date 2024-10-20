@@ -1,5 +1,5 @@
 import { test, expect } from "vitest"
-import * as DESTINED from "./destined"
+import * as DESTINED from "./destined.js"
 
 test("destined exports", () => {
   expect(Object.keys(DESTINED)).toEqual([

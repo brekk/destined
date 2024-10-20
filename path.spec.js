@@ -1,5 +1,5 @@
 import { test, expect } from "vitest"
-import { relativePathJoin } from "./path"
+import { relativePathJoin } from "./path.js"
 
 test(`relativePathJoin`, () => {
   expect(relativePathJoin(__dirname, `fixture`).split(`/`).slice(-2)).toEqual([

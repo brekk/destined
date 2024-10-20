@@ -4,7 +4,7 @@
   "description": "fs, but in the future 🔮",
   "main": "destined.js",
   "type": "module",
-  "repository": "brekk/monoculture",
+  "repository": "brekk/destined",
   "author": "brekk",
   "license": "MIT",
   "exports": {

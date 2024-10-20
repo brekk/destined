@@ -13,7 +13,7 @@ import {
   rimraf,
   writeFile,
   writeFileWithAutoPath,
-} from "./fs"
+} from "./fs.js"
 import PKG from "./package.json"
 
 const u = U(PKG.name + `@` + PKG.version)
