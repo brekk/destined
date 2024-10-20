@@ -1,0 +1,36 @@
+{
+  "name": "destined",
+  "version": "0.0.1",
+  "description": "fs, but in the future 🔮",
+  "main": "file-system.js",
+  "type": "module",
+  "repository": "brekk/monoculture",
+  "author": "brekk",
+  "license": "MIT",
+  "exports": "./file-system.js",
+  "dependencies": {
+    "find-up": "^7.0.0",
+    "fluture": "^14.0.0",
+    "glob": "^11.0.0",
+    "ramda": "^0.29.1"
+  },
+  "devDependencies": {
+    "dotenv-cli": "7.3.0",
+    "nps": "^5.10.0",
+    "unusual": "^0.0.3",
+    "vitest": "^2.1.3"
+  },
+  "scripts": {
+    "nps": "dotenv -- nps -c ./package-scripts.cjs",
+    "clean": "dotenv -- nps -c ./package-scripts.cjs clean",
+    "lint": "dotenv -- nps -c ./package-scripts.cjs lint",
+    "meta": "dotenv -- nps -c ./package-scripts.cjs meta",
+    "meta:graph": "dotenv -- nps -c ./package-scripts.cjs meta.graph",
+    "test": "dotenv -- nps -c ./package-scripts.cjs test",
+    "test:ci": "dotenv -- nps -c ./package-scripts.cjs test.ci",
+    "test:silent": "dotenv -- nps -c ./package-scripts.cjs test.silent",
+    "test:snapshot": "dotenv -- nps -c ./package-scripts.cjs test.snapshot",
+    "test:watch": "dotenv -- nps -c ./package-scripts.cjs test.watch"
+  },
+  "packageManager": "yarn@4.5.1"
+}
