@@ -25,8 +25,8 @@ jobs:
         run: yarn --immutable
       - name: 🔍 Checking version...
         run: |
-          VERSION_BEFORE="$(cat package.json | grep version | cut -d":" -f2 | cut -d"\"" -f2)"
-          echo "VERSION_BEFORE=$VERSION_BEFORE">> "$GITHUB_ENV"
+          VERSION_PRIOR="$(cat package.json | grep version | cut -d":" -f2 | cut -d"\"" -f2)"
+          echo "VERSION_PRIOR=$VERSION_PRIOR">> "$GITHUB_ENV"
       - name: 🧪 Running tests...
         id: test
         run: |
@@ -45,9 +45,13 @@ jobs:
       - name: 🪚 Checking version...
         run: |
           echo "CURRENT"
-          echo "${{ steps.changelog.outputs.version }}"
+          echo $VERSION_CURRENT
           echo "PREVIOUS"
-          echo $VERSION_BEFORE
+          echo $VERSION_PRIOR
+          echo "COMPARE"
+          echo $VERSION_CURRENT == $VERSION_PRIOR
+        env:
+          VERSION_CURRENT: ${{ steps.changelog.outputs.version }}
 
       # - name: 🐣 Creating release...
       #   uses: actions/create-release@v1
