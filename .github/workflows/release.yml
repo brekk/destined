@@ -47,7 +47,7 @@ jobs:
         run: |
           echo "..."
           echo "${{ steps.changelog.outputs.version }}"
-          echo "***"
+          echo "*** Y U No Work?"
           echo ${{ steps.changelog.outputs.version }}
           echo "<<<"
           echo $YOYO
