@@ -12,26 +12,34 @@ jobs:
   publish:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v3
+      - name: 🛒 Checking out repo...
+        uses: actions/checkout@v4
+      - name: 🍓 Enabling corepack...
+        run: corepack enable
+      - name: 🚂 Setting up node...
+        uses: actions/setup-node@v3
         with:
           node-version: "20"
-      - name: test
+          cache: yarn
+      - name: 🧶 Installing dependencies...
+        run: yarn --immutable
+      - name: 🧪 Running tests...
         id: test
         run: |
           yarn test
-      - name: lint
+      - name: 🧼 Linting code...
         id: lint
         run: |
           yarn lint
       - uses: JS-DevTools/npm-publish@v3
+        name: 🖨️ Publishing package...
         with:
           token: ${{ secrets.NPM_TOKEN }}
-      - name: Conventional Changelog Action
+      - name: 🪵 Capturing changelog...
         uses: TriPSs/conventional-changelog-action@v5
         with:
           github-token: ${{ secrets.github_token }}
-      - name: Create Release
+      - name: 🐣 Creating release...
         uses: actions/create-release@v1
         if: ${{ steps.changelog.outputs.skipped == 'false' }}
         env:
