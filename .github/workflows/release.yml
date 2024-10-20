@@ -51,7 +51,7 @@ jobs:
           echo "COMPARE"
           echo $VERSION_CURRENT == $VERSION_PRIOR
         env:
-          VERSION_CURRENT: ${{ steps.changelog.outputs.version }}
+          VERSION_CURRENT: steps.changelog.outputs.version
 
       # - name: 🐣 Creating release...
       #   uses: actions/create-release@v1
