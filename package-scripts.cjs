@@ -10,7 +10,10 @@ module.exports = {
       ...sd(`vitest --run --disable-console-intercept`, `test!`),
       ci: sd(`vitest --run`, `test for CI!`),
       watch: sd(`vitest --disable-console-intercept`, `test with watch-mode!`),
-      snapshot: sd(`vitest -u --disable-console-intercept`, `update snapshots`),
+      snapshot: sd(
+        `vitest -u --run --disable-console-intercept`,
+        `update snapshots`,
+      ),
     },
     meta: {
       graph: `madge ${INPUT} --image graph.svg`,

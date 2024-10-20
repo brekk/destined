@@ -3,7 +3,6 @@
 exports[`readFile 1`] = `
 "{
   "name": "destined",
-  "version": "0.0.6",
   "description": "fs, but in the future 🔮",
   "main": "destined.js",
   "type": "module",
@@ -53,6 +52,5 @@ exports[`readFile 1`] = `
     "care": "dotenv -- nps -c ./package-scripts.cjs care"
   },
   "packageManager": "yarn@4.5.1"
-}
-"
+}"
 `;

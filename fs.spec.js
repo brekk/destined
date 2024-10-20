@@ -105,9 +105,11 @@ test(`readDir - fail`, () =>
 
 test(`readFile`, () =>
   new Promise((done) => {
-    fork(done)((z) => {
-      delete z.version
-      expect(z).toMatchSnapshot()
+    fork(done)((s) => {
+      const a = JSON.parse(s)
+      // nuke this because it changes out of band when the release goes out
+      delete a.version
+      expect(JSON.stringify(a, null, 2)).toMatchSnapshot()
       done()
     })(readFile(path.resolve(cwd(), `package.json`)))
   }))
