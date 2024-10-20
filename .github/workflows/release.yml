@@ -58,7 +58,7 @@ jobs:
           echo $VERSION_CURRENT == $VERSION_PRIOR
         env:
           VERSION_CURRENT: ${{steps.changelog.outputs.version}}
-          YOYO: ${{ toJson(steps.changelog.outputs.version) }}
+          YOYO: ${{ toJson(steps) }}
 
       # - name: 🐣 Creating release...
       #   uses: actions/create-release@v1
