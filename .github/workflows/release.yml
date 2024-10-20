@@ -31,10 +31,6 @@ jobs:
         id: lint
         run: |
           yarn lint
-      - uses: JS-DevTools/npm-publish@v3
-        name: 🖨️ Publishing package...
-        with:
-          token: ${{ secrets.NPM_TOKEN }}
       - name: 🪵 Capturing changelog...
         uses: TriPSs/conventional-changelog-action@v5
         with:
@@ -48,3 +44,8 @@ jobs:
           tag_name: ${{ steps.changelog.outputs.tag }}
           release_name: ${{ steps.changelog.outputs.tag }}
           body: ${{ steps.changelog.outputs.clean_changelog }}
+      - name: 🖨️ Publishing package...
+        if: ${{ steps.changelog.outputs.skipped == 'false' }}
+        uses: JS-DevTools/npm-publish@v3
+        with:
+          token: ${{ secrets.NPM_TOKEN }}
