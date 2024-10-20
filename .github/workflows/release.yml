@@ -34,6 +34,7 @@ jobs:
       - name: 🪵 Capturing changelog...
         uses: TriPSs/conventional-changelog-action@v5
         with:
+          preset: "conventionalcommits"
           github-token: ${{ secrets.github_token }}
       - name: 🐣 Creating release...
         uses: actions/create-release@v1
