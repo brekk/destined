@@ -44,6 +44,10 @@ jobs:
           skip-tag: true
       - name: 🪚 Checking version...
         run: |
+          echo "..."
+          echo "${{ steps.changelog.outputs.version }}"
+          echo "***"
+          echo ${{ steps.changelog.outputs.version }}
           echo "CURRENT"
           echo $VERSION_CURRENT
           echo "PREVIOUS"
@@ -51,7 +55,7 @@ jobs:
           echo "COMPARE"
           echo $VERSION_CURRENT == $VERSION_PRIOR
         env:
-          VERSION_CURRENT: steps.changelog.outputs.version
+          VERSION_CURRENT: ${{steps.changelog.outputs.version}}
 
       # - name: 🐣 Creating release...
       #   uses: actions/create-release@v1
