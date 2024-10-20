@@ -1,3 +1,13 @@
+## [0.0.6](https://github.com/brekk/monoculture/compare/v0.0.5...v0.0.6) (2024-10-20)
+
+
+### Bug Fixes
+
+* invalid package.json ([a6e414b](https://github.com/brekk/monoculture/commit/a6e414baa2a9e6e390743a49c552865e30a2d11c))
+* package.json exports seems to be incorrect ([2900664](https://github.com/brekk/monoculture/commit/2900664e8c733c8f76f821ab8000ab254ae05b2b))
+
+
+
 ## [0.0.5](https://github.com/brekk/monoculture/compare/v0.0.2...v0.0.5) (2024-10-20)
 
 
