@@ -47,17 +47,9 @@ jobs:
       - name: 🪚 Checking version...
         run: |
           echo "..."
-          echo "${{ steps.changelog.outputs.version }}"
-          echo "*** Y U No Work?"
-          echo ${{ steps.changelog.outputs.version }}
-          echo "<<<"
           echo $YOYO
-          echo "CURRENT"
-          echo "VERSION CURRENT: $VERSION_CURRENT"
-          echo "PREVIOUS"
-          echo $VERSION_PRIOR
           echo "COMPARE"
-          comp="$VERSION_CURRENT == $VERSION_PRIOR"
+          comp=[ $VERSION_CURRENT == $VERSION_PRIOR ]
           echo $comp
         env:
           VERSION_CURRENT: ${{steps.changelog.outputs.version}}
